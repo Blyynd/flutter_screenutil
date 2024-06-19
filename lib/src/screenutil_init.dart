@@ -72,6 +72,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.designSize = ScreenUtil.defaultSize,
     this.splitScreenMode = false,
     this.minTextAdapt = false,
+    this.data,
     this.useInheritedMediaQuery = false,
     this.ensureScreenSize = false,
     this.enableScaleWH,
@@ -84,6 +85,7 @@ class ScreenUtilInit extends StatefulWidget {
   final ScreenUtilInitBuilder? builder;
   final Widget? child;
   final bool splitScreenMode;
+  final MediaQueryData? data;
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
   final bool ensureScreenSize;
@@ -176,7 +178,8 @@ class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObse
 
   @override
   Widget build(BuildContext context) {
-    final mq = _mediaQueryData;
+    MediaQueryData? mq = _mediaQueryData;
+    if(widget.data != null) mq = widget.data;
 
     if (mq == null) return const SizedBox.shrink();
 
